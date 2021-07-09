@@ -1,13 +1,14 @@
-package com.zemoso.springboot.cruddemo.service;
-
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+package com.zemoso.springboot.cruddemo.service.impl;
 
 import com.zemoso.springboot.cruddemo.dao.EmployeeRepository;
 import com.zemoso.springboot.cruddemo.entity.Employee;
+import com.zemoso.springboot.cruddemo.exception.EmployeeNotFoundException;
+import com.zemoso.springboot.cruddemo.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -35,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		else {
 			// we didn't find the employee
-			throw new RuntimeException("Did not find employee id - " + theId);
+			throw new EmployeeNotFoundException("Did not find employee id - " + theId);
 		}
 		
 		return theEmployee;
